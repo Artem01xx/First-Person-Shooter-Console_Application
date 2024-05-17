@@ -1,0 +1,11 @@
+﻿  CharacterMovement.cpp
+  ShooterGame.cpp
+D:\C++\ShooterGame\ShooterGame.cpp(17,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\C++\ShooterGame\ShooterGame.cpp(77,26): warning C4305: '+=': truncation from 'double' to 'float'
+D:\C++\ShooterGame\ShooterGame.cpp(79,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\C++\ShooterGame\ShooterGame.cpp(80,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\C++\ShooterGame\ShooterGame.cpp(87,42): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+D:\C++\ShooterGame\ShooterGame.cpp(102,19): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\C++\ShooterGame\ShooterGame.cpp(108,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  ShooterGame.vcxproj -> D:\C++\ShooterGame\x64\Debug\ShooterGame.exe
