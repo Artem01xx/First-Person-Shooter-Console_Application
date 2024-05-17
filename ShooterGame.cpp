@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <Windows.h>
 #include "CharacterMovement.h"
+#include "Enemy.h"
 
 namespace ScreenParams {
 	const int screenWidth = 120;
@@ -49,6 +50,9 @@ int main() {
 	map += L"#......#########";
 	map += L"#..............#";
 	map += L"################";
+
+	Enemy enemy;
+	enemy.InitializeEnemies(5.0f, 5.0f, 0.0f);
 	// Taking Current Time
 	auto tp1 = std::chrono::system_clock::now();
 	auto tp2 = std::chrono::system_clock::now();
@@ -62,6 +66,7 @@ int main() {
 		float elapsedTime = dElipsedTime.count();
 		// Updating Player Position
 		UpdatePlayerPosition(elapsedTime, map, PlayerCoord::playerA, PlayerCoord::playerX, PlayerCoord::playerY, MapParams::mapWidth);
+		enemy.UpdateEnemyPosition(elapsedTime, map, MapParams::mapWidth);
 
 		for (int i = 0; i < ScreenParams::screenWidth; i++) {
 			// Calculating Ray For Each Column Of Screen
@@ -97,8 +102,8 @@ int main() {
 								p.push_back({ d, dot });
 							}
 						}
-						std::sort(p.begin(), p.end(), [](const std::pair<float, float>& left, const std::pair<float, float>& right) 
-													    {return left.first < right.first; });
+						std::sort(p.begin(), p.end(), [](const std::pair<float, float>& left, const std::pair<float, float>& right)
+							{return left.first < right.first; });
 						float bound = 0.01;
 						if (acos(p.at(0).second) < bound) bHitBoundary = true;
 						if (acos(p.at(1).second) < bound) bHitBoundary = true;
@@ -143,6 +148,7 @@ int main() {
 				screen[(ny + 1) * ScreenParams::screenWidth + nx] = map[ny * MapParams::mapWidth + nx];
 			}
 		}
+		enemy.RenderEnemy(screen, ScreenParams::screenWidth);
 		// Player Position
 		screen[((int)PlayerCoord::playerY + 1) * ScreenParams::screenWidth + (int)PlayerCoord::playerX] = 'P';
 

@@ -1,11 +1,12 @@
 ﻿  CharacterMovement.cpp
+  Enemy.cpp
   ShooterGame.cpp
-D:\C++\ShooterGame\ShooterGame.cpp(17,12): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\C++\ShooterGame\ShooterGame.cpp(77,26): warning C4305: '+=': truncation from 'double' to 'float'
-D:\C++\ShooterGame\ShooterGame.cpp(79,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\C++\ShooterGame\ShooterGame.cpp(80,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\C++\ShooterGame\ShooterGame.cpp(87,42): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
-D:\C++\ShooterGame\ShooterGame.cpp(102,19): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\C++\ShooterGame\ShooterGame.cpp(108,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\C++ Git\First-Person-Shooter-Console_Application\ShooterGame.cpp(18,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\C++ Git\First-Person-Shooter-Console_Application\ShooterGame.cpp(82,26): warning C4305: '+=': truncation from 'double' to 'float'
+D:\C++ Git\First-Person-Shooter-Console_Application\ShooterGame.cpp(84,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\C++ Git\First-Person-Shooter-Console_Application\ShooterGame.cpp(85,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\C++ Git\First-Person-Shooter-Console_Application\ShooterGame.cpp(92,42): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+D:\C++ Git\First-Person-Shooter-Console_Application\ShooterGame.cpp(107,19): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\C++ Git\First-Person-Shooter-Console_Application\ShooterGame.cpp(113,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   Generating Code...
-  ShooterGame.vcxproj -> D:\C++\ShooterGame\x64\Debug\ShooterGame.exe
+  ShooterGame.vcxproj -> D:\C++ Git\First-Person-Shooter-Console_Application\x64\Debug\ShooterGame.exe
