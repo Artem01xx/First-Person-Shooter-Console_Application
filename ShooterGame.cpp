@@ -2,9 +2,10 @@
 #include <chrono>
 #include <vector>
 #include <algorithm>
-#include <Windows.h>
+#include <windows.h>
 #include "CharacterMovement.h"
 #include "Enemy.h"
+#include "Projectile.h"
 
 namespace ScreenParams {
 	const int screenWidth = 120;
@@ -70,6 +71,10 @@ int main() {
 		// Updating Player Position
 		UpdatePlayerPosition(elapsedTime, map, PlayerCoord::playerA, PlayerCoord::playerX, PlayerCoord::playerY, MapParams::mapWidth);
 
+		if (GetAsyncKeyState((unsigned short)'F') & 0x8000) {
+			//Shoot
+		}
+		
 		for (int i = 0; i < ScreenParams::screenWidth; i++) {
 			// Calculating Ray For Each Column Of Screen
 			float rayAngle = (PlayerCoord::playerA - PlayerCoord::fov / 2.0f) + ((float)i / (float)ScreenParams::screenWidth) * PlayerCoord::fov;

@@ -129,11 +129,15 @@
   <ItemGroup>
     <ClCompile Include="CharacterMovement.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="ProjectileManager.cpp" />
     <ClCompile Include="ShooterGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CharacterMovement.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Projectile.h" />
+    <ClInclude Include="ProjectileManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
