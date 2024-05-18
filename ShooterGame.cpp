@@ -52,7 +52,10 @@ int main() {
 	map += L"################";
 
 	Enemy enemy;
-	enemy.InitializeEnemies(5.0f, 5.0f, 0.0f);
+	// Added Targets
+	enemy.InitializeEnemies(5.0f, 5.0f, 'T');
+	enemy.InitializeEnemies(3.0f, 3.0f, 'T');
+	enemy.InitializeEnemies(8.0f, 8.0f, 'T');
 	// Taking Current Time
 	auto tp1 = std::chrono::system_clock::now();
 	auto tp2 = std::chrono::system_clock::now();
@@ -66,7 +69,6 @@ int main() {
 		float elapsedTime = dElipsedTime.count();
 		// Updating Player Position
 		UpdatePlayerPosition(elapsedTime, map, PlayerCoord::playerA, PlayerCoord::playerX, PlayerCoord::playerY, MapParams::mapWidth);
-		enemy.UpdateEnemyPosition(elapsedTime, map, MapParams::mapWidth);
 
 		for (int i = 0; i < ScreenParams::screenWidth; i++) {
 			// Calculating Ray For Each Column Of Screen
@@ -148,9 +150,10 @@ int main() {
 				screen[(ny + 1) * ScreenParams::screenWidth + nx] = map[ny * MapParams::mapWidth + nx];
 			}
 		}
-		enemy.RenderEnemy(screen, ScreenParams::screenWidth);
 		// Player Position
 		screen[((int)PlayerCoord::playerY + 1) * ScreenParams::screenWidth + (int)PlayerCoord::playerX] = 'P';
+		// Enemy Position
+		enemy.RenderEnemy(screen, ScreenParams::screenWidth);
 
 		screen[ScreenParams::screenWidth * ScreenParams::screenHeight - 1] = '\0';
 		WriteConsoleOutputCharacter(hConsole, screen, ScreenParams::screenWidth * ScreenParams::screenHeight, { 0, 0 }, &dwBytesWriten);

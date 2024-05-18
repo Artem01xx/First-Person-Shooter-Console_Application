@@ -1,6 +1,6 @@
 #include "CharacterMovement.h"
 
-void UpdatePlayerPosition(float elapsedTime, const std::wstring& map, float& angle, float& xPos, float& yPos, int mapWidth)
+void UpdatePlayerPosition(const float elapsedTime, const std::wstring& map, float& angle, float& xPos, float& yPos, int mapWidth)
 {
 	// Move Left
 	if (GetAsyncKeyState((unsigned short)'A') & 0x8000)

@@ -5,16 +5,13 @@
 class Enemy
 {
 public:
-	Enemy(float x, float y, float angle);
+	Enemy(float x, float y, char symbol);
 	Enemy();
-	void InitializeEnemies(float x, float y, float angle);
-	void UpdateEnemyPosition(float elapsedTime, const std::wstring& map, int mapWidth);
+	void InitializeEnemies(float x, float y, char symbol);
 	void RenderEnemy(wchar_t* screen, int screenWidth);
 private:
-	float x;
-	float y;
-	float angle;
+	float x, y;
+	char symbol;
 	std::vector<Enemy> enemies;
 };
 
-//Rep
