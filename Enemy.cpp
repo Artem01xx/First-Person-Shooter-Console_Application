@@ -17,8 +17,8 @@ void Enemy::InitializeEnemies(float x, float y, char symbol) {
 }
 
 
-void Enemy::RenderEnemy(wchar_t* screen, int screenWidth) {
+void Enemy::RenderEnemy(std::wstring& map, int mapWidth) {
 	for (auto& enemy : enemies) {
-		screen[((int)enemy.y + 1) * screenWidth + (int)enemy.x] = symbol;
+		map[(int)enemy.y * mapWidth + (int)enemy.x] = symbol;
 	}
 }

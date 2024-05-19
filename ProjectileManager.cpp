@@ -5,21 +5,27 @@ void ProjectileManager::AddProjectile(float x, float y, float angle){
 	projectiles.push_back(Projectile(x, y, angle));
 }
 
-void ProjectileManager::UpdateProjectile(float elapsedTime, std::wstring& map, int mapWidth, int MapHeight){
+void ProjectileManager::UpdateProjectile(float elapsedTime, wchar_t* screen, int screenWidth, int screenHeight,  std::wstring& map, int mapWidth){
 	for (auto& projectile : projectiles) {
 		projectile.Update(elapsedTime);
-		if (projectile.isActive && (projectile.posX < 0 || projectile.posY >= mapWidth || projectile.posY < 0 || projectile.posY >= MapHeight ||
-			map[(int)projectile.posY * mapWidth + (int)projectile.posX] == '#')) {
+
+		if (map[(int)projectile.posY * mapWidth + (int)projectile.posX] == 'T') {
+			map[(int)projectile.posY * mapWidth + (int)projectile.posX] = 'X'; 
+			projectile.isActive = false; 
+		}
+
+		if (projectile.isActive && (projectile.posX < 0 || projectile.posY >= screenWidth || projectile.posY < 0 || projectile.posY >= screenHeight ||
+			screen[((int)projectile.posY + 1) * screenWidth + (int)projectile.posX] == '#')) {
 			projectile.isActive = false;
 		}
 	}
-	projectiles.erase(std::remove_if(projectiles.begin(), projectiles.end(), [](Projectile proj) {return !proj.isActive; }), projectiles.end());
+	projectiles.erase(std::remove_if(projectiles.begin(), projectiles.end(), [](const Projectile& proj) {return !proj.isActive; }), projectiles.end());
 }
 
 void ProjectileManager::RenderProjectile(wchar_t* screen, int screenWidth, int screenHeight){
 	for (auto& projectile : projectiles) {
 		if (projectile.isActive && projectile.posX >= 0 && projectile.posX < screenWidth && projectile.posY >= 0 && projectile.posY < screenHeight) {
-			screen[(int)projectile.posY * screenWidth + (int)projectile.posX] = 'B';
+			screen[((int)projectile.posY + 1) * screenWidth + (int)projectile.posX] = 'B';
 		}
 	}
 }

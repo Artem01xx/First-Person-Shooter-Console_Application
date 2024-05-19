@@ -40,23 +40,23 @@ int main() {
 	map += L"#.......########";
 	map += L"#..............#";
 	map += L"#......##......#";
-	map += L"#......##......#";
+	map += L"#......T#......#";
 	map += L"#..............#";
 	map += L"###............#";
 	map += L"##.............#";
-	map += L"#......####..###";
+	map += L"#......T#..# ###";
 	map += L"#......#.......#";
 	map += L"#......#.......#";
 	map += L"#..............#";
-	map += L"#......#########";
+	map += L"#......T########";
 	map += L"#..............#";
 	map += L"################";
 
 	Enemy enemy;
 	// Added Targets
-	enemy.InitializeEnemies(5.0f, 5.0f, 'T');
+	/*enemy.InitializeEnemies(5.0f, 5.0f, 'T');
 	enemy.InitializeEnemies(3.0f, 3.0f, 'T');
-	enemy.InitializeEnemies(8.0f, 8.0f, 'T');
+	enemy.InitializeEnemies(8.0f, 8.0f, 'T');*/
 	// Added Manager For Bullets
 	ProjectileManager projectileManager;
 
@@ -78,7 +78,7 @@ int main() {
 		if (GetAsyncKeyState(VK_RBUTTON) & 0x8000) {
 			projectileManager.AddProjectile(PlayerCoord::playerX, PlayerCoord::playerY, PlayerCoord::playerA);
 		}
-			projectileManager.UpdateProjectile(elapsedTime, map, MapParams::mapWidth, MapParams::mapHeight);
+			projectileManager.UpdateProjectile(elapsedTime, screen, ScreenParams::screenWidth, ScreenParams::screenHeight, map, MapParams::mapWidth);
 		for (int i = 0; i < ScreenParams::screenWidth; i++) {
 			// Calculating Ray For Each Column Of Screen
 			float rayAngle = (PlayerCoord::playerA - PlayerCoord::fov / 2.0f) + ((float)i / (float)ScreenParams::screenWidth) * PlayerCoord::fov;
@@ -162,7 +162,7 @@ int main() {
 		// Player Position
 		screen[((int)PlayerCoord::playerY + 1) * ScreenParams::screenWidth + (int)PlayerCoord::playerX] = 'P';
 		// Enemy Position
-		enemy.RenderEnemy(screen, ScreenParams::screenWidth);
+		enemy.RenderEnemy(map, MapParams::mapWidth);
 		projectileManager.RenderProjectile(screen, ScreenParams::screenWidth, ScreenParams::screenHeight);
 
 		screen[ScreenParams::screenWidth * ScreenParams::screenHeight - 1] = '\0';
