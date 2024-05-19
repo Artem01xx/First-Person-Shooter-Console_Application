@@ -5,7 +5,7 @@
 #include <windows.h>
 #include "CharacterMovement.h"
 #include "Enemy.h"
-#include "Projectile.h"
+#include "ProjectileManager.h"
 
 namespace ScreenParams {
 	const int screenWidth = 120;
@@ -57,6 +57,9 @@ int main() {
 	enemy.InitializeEnemies(5.0f, 5.0f, 'T');
 	enemy.InitializeEnemies(3.0f, 3.0f, 'T');
 	enemy.InitializeEnemies(8.0f, 8.0f, 'T');
+	// Added Manager For Bullets
+	ProjectileManager projectileManager;
+
 	// Taking Current Time
 	auto tp1 = std::chrono::system_clock::now();
 	auto tp2 = std::chrono::system_clock::now();
@@ -71,10 +74,11 @@ int main() {
 		// Updating Player Position
 		UpdatePlayerPosition(elapsedTime, map, PlayerCoord::playerA, PlayerCoord::playerX, PlayerCoord::playerY, MapParams::mapWidth);
 
-		if (GetAsyncKeyState((unsigned short)'F') & 0x8000) {
-			//Shoot
+		// Shoot (Right Mouse Button)
+		if (GetAsyncKeyState(VK_RBUTTON) & 0x8000) {
+			projectileManager.AddProjectile(PlayerCoord::playerX, PlayerCoord::playerY, PlayerCoord::playerA);
 		}
-		
+			projectileManager.UpdateProjectile(elapsedTime, map, MapParams::mapWidth, MapParams::mapHeight);
 		for (int i = 0; i < ScreenParams::screenWidth; i++) {
 			// Calculating Ray For Each Column Of Screen
 			float rayAngle = (PlayerCoord::playerA - PlayerCoord::fov / 2.0f) + ((float)i / (float)ScreenParams::screenWidth) * PlayerCoord::fov;
@@ -159,6 +163,7 @@ int main() {
 		screen[((int)PlayerCoord::playerY + 1) * ScreenParams::screenWidth + (int)PlayerCoord::playerX] = 'P';
 		// Enemy Position
 		enemy.RenderEnemy(screen, ScreenParams::screenWidth);
+		projectileManager.RenderProjectile(screen, ScreenParams::screenWidth, ScreenParams::screenHeight);
 
 		screen[ScreenParams::screenWidth * ScreenParams::screenHeight - 1] = '\0';
 		WriteConsoleOutputCharacter(hConsole, screen, ScreenParams::screenWidth * ScreenParams::screenHeight, { 0, 0 }, &dwBytesWriten);
