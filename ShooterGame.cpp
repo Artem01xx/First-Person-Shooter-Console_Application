@@ -124,6 +124,7 @@ int main() {
 			}
 			int nCelling = (float)(ScreenParams::screenHeight / 2.0f) - ScreenParams::screenHeight / (float)distanceToWall;
 			int nFloor = ScreenParams::screenHeight - nCelling;
+			float angleIntensity = fabs(cos(rayAngle) - PlayerCoord::playerA);
 
 			short shade = ' ';
 			// Changing Color Where Distance Is
@@ -132,8 +133,14 @@ int main() {
 			else if (distanceToWall < depth / 2.0f) shade = 0x2592;
 			else if (distanceToWall < depth)	    shade = 0x2591;
 			else									shade = ' ';     // Far Away
-			if (bHitBoundary == true) shade = ' ';
+			// Apply Angle Intensivity To Shade
+			if (angleIntensity < 0.2f)	    shade = ' ';
+			else if (angleIntensity < 0.5f) shade = 0x2591;
+			else if (angleIntensity < 0.7f) shade = 0x2592;
+			else if (angleIntensity < 0.9f) shade = 0x2593;
+			else							shade = 0x2588;
 
+			if (bHitBoundary == true) shade = ' ';
 			for (int j = 0; j < ScreenParams::screenHeight; j++) {
 				if (j < nCelling) {
 					screen[j * ScreenParams::screenWidth + i] = ' ';
