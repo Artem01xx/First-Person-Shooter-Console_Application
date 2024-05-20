@@ -7,6 +7,15 @@
 #include "Enemy.h"
 #include "ProjectileManager.h"
 
+//This program expects the console dimensions to be set to
+//120 Columns by 40 Rows.I recommend a small font "Consolas" at size 16.
+//Controls: A = Turn Left, D = Turn Right, W = Walk Forwards, S = Walk Backwards, Right Mouse Button - Shoot
+//Future Modifications
+//1) Add enemies not only on a map
+//2) Bullets must be show on a screen not only on a map
+// Author - Artem01xx
+
+
 namespace ScreenParams {
 	const int screenWidth = 120;
 	const int screenHeight = 40;
@@ -31,7 +40,6 @@ namespace ClassDefinition {
 	Controller controller;
 }
 
-const float depth = 16.0f; // Max Depth Of Vision
 
 int main() {
 	//Create Screen Buffer
@@ -63,6 +71,7 @@ int main() {
 	// Taking Current Time
 	auto tp1 = std::chrono::system_clock::now();
 	auto tp2 = std::chrono::system_clock::now();
+	const float depth = 16.0f; // Max Depth Of Vision
 
 	//Main Loop
 	while (true) {
@@ -171,8 +180,6 @@ int main() {
 		// Player Position
 		screen[((int)PlayerCoord::playerY + 1) * ScreenParams::screenWidth + (int)PlayerCoord::playerX] = 'P';
 		ClassDefinition::projectileManager.RenderProjectile(screen, ScreenParams::screenWidth, ScreenParams::screenHeight);
-		// Enemy Position
-		ClassDefinition::enemy.RenderEnemy(map, MapParams::mapWidth);
 
 		screen[ScreenParams::screenWidth * ScreenParams::screenHeight - 1] = '\0';
 		WriteConsoleOutputCharacter(hConsole, screen, ScreenParams::screenWidth * ScreenParams::screenHeight, { 0, 0 }, &dwBytesWriten);

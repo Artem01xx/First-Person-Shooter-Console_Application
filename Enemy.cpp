@@ -1,5 +1,6 @@
 #include "Enemy.h"
 
+// CURR CLASS IS NOT USED
 Enemy::Enemy(float x, float y, char symbol) {
 	this->x = x;
 	this->y = y;

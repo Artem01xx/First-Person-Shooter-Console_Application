@@ -1,4 +1,6 @@
-﻿  ShooterGame.cpp
+﻿  CharacterMovement.cpp
+  ProjectileManager.cpp
+  ShooterGame.cpp
 D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(19,12): warning C4305: 'initializing': truncation from 'double' to 'float'
 D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(94,26): warning C4305: '+=': truncation from 'double' to 'float'
 D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(96,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
@@ -6,4 +8,5 @@ D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(97,17): warning 
 D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(104,42): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
 D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(119,19): warning C4305: 'initializing': truncation from 'double' to 'float'
 D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(125,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
   ShooterGame.vcxproj -> D:\C++\First-Person-Shooter-Console_Application\x64\Debug\ShooterGame.exe

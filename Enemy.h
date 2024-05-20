@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 
+// CURR CLASS IS NOT USED
 class Enemy
 {
 public:

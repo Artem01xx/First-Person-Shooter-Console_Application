@@ -1,7 +1,6 @@
 #include "ProjectileManager.h"
 
 void ProjectileManager::AddProjectile(float x, float y, float angle){
-	projectiles.clear();
 	projectiles.push_back(Projectile(x, y, angle));
 }
 
@@ -25,7 +24,7 @@ void ProjectileManager::UpdateProjectile(float elapsedTime, std::wstring& map, i
 
 void ProjectileManager::RenderProjectile(wchar_t* screen, int screenWidth, int screenHeight){
 	for (auto& projectile : projectiles) {
-		if (projectile.isActive && projectile.posX >= 0 && projectile.posX < screenWidth && projectile.posY >= 0 && projectile.posY < screenHeight) {
+		if (projectile.posX >= 0 && projectile.posX < screenWidth && projectile.posY >= 0 && projectile.posY < screenHeight) {
 			screen[((int)projectile.posY + 1) * screenWidth + (int)projectile.posX] = 'B';
 		}
 	}
