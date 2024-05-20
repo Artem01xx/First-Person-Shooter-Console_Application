@@ -17,11 +17,18 @@ namespace PlayerCoord {
 	float playerY = 8.0f;
 	float playerA = 0.0f;
 	float fov = 3.14159 / 4.0f; // (Field Of View)
+	int score = 0;
 }
 
 namespace MapParams {
 	const int mapHeight = 16;
 	const int mapWidth = 16;
+}
+
+namespace ClassDefinition {
+	Enemy enemy;
+	ProjectileManager projectileManager;
+	Controller controller;
 }
 
 const float depth = 16.0f; // Max Depth Of Vision
@@ -52,14 +59,7 @@ int main() {
 	map += L"#..............#";
 	map += L"################";
 
-	Enemy enemy;
-	// Added Targets
-	/*enemy.InitializeEnemies(5.0f, 5.0f, 'T');
-	enemy.InitializeEnemies(3.0f, 3.0f, 'T');
-	enemy.InitializeEnemies(8.0f, 8.0f, 'T');*/
-	// Added Manager For Bullets
-	ProjectileManager projectileManager;
-
+	
 	// Taking Current Time
 	auto tp1 = std::chrono::system_clock::now();
 	auto tp2 = std::chrono::system_clock::now();
@@ -72,13 +72,14 @@ int main() {
 		tp1 = tp2;
 		float elapsedTime = dElipsedTime.count();
 		// Updating Player Position
-		UpdatePlayerPosition(elapsedTime, map, PlayerCoord::playerA, PlayerCoord::playerX, PlayerCoord::playerY, MapParams::mapWidth);
+		ClassDefinition::controller.UpdatePlayerPosition(elapsedTime, map, PlayerCoord::playerA, PlayerCoord::playerX, PlayerCoord::playerY, MapParams::mapWidth);
 
 		// Shoot (Right Mouse Button)
 		if (GetAsyncKeyState(VK_RBUTTON) & 0x8000) {
-			projectileManager.AddProjectile(PlayerCoord::playerX, PlayerCoord::playerY, PlayerCoord::playerA);
+			ClassDefinition::projectileManager.AddProjectile(PlayerCoord::playerX, PlayerCoord::playerY, PlayerCoord::playerA);
 		}
-			projectileManager.UpdateProjectile(elapsedTime, screen, ScreenParams::screenWidth, ScreenParams::screenHeight, map, MapParams::mapWidth);
+		ClassDefinition::projectileManager.UpdateProjectile(elapsedTime, map, MapParams::mapWidth, MapParams::mapHeight, PlayerCoord::score);
+
 		for (int i = 0; i < ScreenParams::screenWidth; i++) {
 			// Calculating Ray For Each Column Of Screen
 			float rayAngle = (PlayerCoord::playerA - PlayerCoord::fov / 2.0f) + ((float)i / (float)ScreenParams::screenWidth) * PlayerCoord::fov;
@@ -114,7 +115,7 @@ int main() {
 							}
 						}
 						std::sort(p.begin(), p.end(), [](const std::pair<float, float>& left, const std::pair<float, float>& right)
-							{return left.first < right.first; });
+						{return left.first < right.first; });
 						float bound = 0.01;
 						if (acos(p.at(0).second) < bound) bHitBoundary = true;
 						if (acos(p.at(1).second) < bound) bHitBoundary = true;
@@ -152,7 +153,8 @@ int main() {
 			}
 		}
 		// Display Stats
-		swprintf_s(screen, 40, L"X=%3.2f, Y=%3.2f, A=%3.2f, FPS=%3.2f", PlayerCoord::playerX, PlayerCoord::playerY, PlayerCoord::playerA, 1.0f / elapsedTime);
+		swprintf_s(screen, 50, L"X=%3.2f, Y=%3.2f, A=%3.2f, FPS=%3.2f, SCORE=%d", PlayerCoord::playerX, PlayerCoord::playerY, PlayerCoord::playerA, 1.0f / elapsedTime, PlayerCoord::score);
+	
 		// Display Map
 		for (int nx = 0; nx < MapParams::mapWidth; nx++) {
 			for (int ny = 0; ny < MapParams::mapHeight; ny++) {
@@ -161,9 +163,9 @@ int main() {
 		}
 		// Player Position
 		screen[((int)PlayerCoord::playerY + 1) * ScreenParams::screenWidth + (int)PlayerCoord::playerX] = 'P';
+		ClassDefinition::projectileManager.RenderProjectile(screen, ScreenParams::screenWidth, ScreenParams::screenHeight);
 		// Enemy Position
-		enemy.RenderEnemy(map, MapParams::mapWidth);
-		projectileManager.RenderProjectile(screen, ScreenParams::screenWidth, ScreenParams::screenHeight);
+		ClassDefinition::enemy.RenderEnemy(map, MapParams::mapWidth);
 
 		screen[ScreenParams::screenWidth * ScreenParams::screenHeight - 1] = '\0';
 		WriteConsoleOutputCharacter(hConsole, screen, ScreenParams::screenWidth * ScreenParams::screenHeight, { 0, 0 }, &dwBytesWriten);

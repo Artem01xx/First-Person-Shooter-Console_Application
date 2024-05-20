@@ -1,5 +1,11 @@
 #pragma once
 #include <string>
 #include <Windows.h>
+#include "ProjectileManager.h"
 
-void UpdatePlayerPosition(const float elapsedTime, const std::wstring& map, float& angle, float& xPos, float& yPos, int mapWidth);
+class Controller {
+public:
+	void UpdatePlayerPosition(const float elapsedTime, std::wstring& map, float& angle, float& xPos, float& yPos, int mapWidth);
+private:
+	ProjectileManager projectileManager;
+};

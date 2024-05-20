@@ -1,9 +1,9 @@
 ﻿  ShooterGame.cpp
 D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(19,12): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(93,26): warning C4305: '+=': truncation from 'double' to 'float'
-D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(95,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(94,26): warning C4305: '+=': truncation from 'double' to 'float'
 D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(96,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(103,42): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
-D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(118,19): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(124,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(97,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(104,42): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(119,19): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\C++\First-Person-Shooter-Console_Application\ShooterGame.cpp(125,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   ShooterGame.vcxproj -> D:\C++\First-Person-Shooter-Console_Application\x64\Debug\ShooterGame.exe
